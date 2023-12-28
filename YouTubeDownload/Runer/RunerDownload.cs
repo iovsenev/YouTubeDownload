@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using YouTubeDownload.Commands;
+﻿using YouTubeDownload.Commands;
 using YouTubeDownload.Interfaces;
 using YouTubeDownload.Utilites;
 
@@ -39,7 +35,6 @@ namespace YouTubeDownload.Runer
                 run = !task.IsCompleted;
                 LoadBar.Bar(task);
             }
-            await task;
         }
     }
 }

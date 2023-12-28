@@ -1,6 +1,4 @@
-﻿using System.Text;
-using YouTubeDownload.Commands;
-using YouTubeDownload.Interfaces;
+﻿using YouTubeDownload.Interfaces;
 using YouTubeDownload.Runer;
 
 namespace YouTubeDownload
@@ -37,8 +35,6 @@ namespace YouTubeDownload
                 Console.Clear();
                 ShowStartMessage();
             }
-
-
         }
 
         private static void ShowStartMessage()
@@ -55,7 +51,5 @@ namespace YouTubeDownload
             Console.WriteLine("\n************* Приступаем: ****************");
             Console.ForegroundColor = def;
         }
-
-
     }
 }

@@ -1,9 +1,6 @@
 ﻿
-using YouTubeDownload.Exceptions;
 using YouTubeDownload.Interfaces;
 using YoutubeExplode;
-using YoutubeExplode.Converter;
-using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
 
 namespace YouTubeDownload.Commands
@@ -34,8 +31,7 @@ namespace YouTubeDownload.Commands
 
             Console.WriteLine("\nЗагрузка началась");
             await _client.Videos.Streams.DownloadAsync(streamInfo, path);
-            await Console.Out.WriteLineAsync("Загрузка завершена"); ;
-
+            await Console.Out.WriteLineAsync("Загрузка завершена");
         }
     }
 }

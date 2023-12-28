@@ -1,6 +1,4 @@
-﻿
-
-namespace YouTubeDownload.Interfaces
+﻿namespace YouTubeDownload.Interfaces
 {
     internal class UserInterface
     {
