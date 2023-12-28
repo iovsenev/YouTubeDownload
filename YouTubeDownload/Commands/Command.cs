@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using YouTubeDownload.Interfaces;
+using YoutubeExplode;
 
 namespace YouTubeDownload.Commands
 {
     abstract class Command
     {
-        public abstract Task DownloadVideo(string url, string output);
+        protected UserInterface _user;
+        protected YoutubeClient _client;
+
+        public abstract Task Start();
     }
 }

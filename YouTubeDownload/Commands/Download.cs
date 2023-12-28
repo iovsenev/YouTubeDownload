@@ -10,22 +10,31 @@ namespace YouTubeDownload.Commands
 {
     internal class Download : Command
     {
-        public Download()
+        public Download(UserInterface user)
         {
+            _user = user;
+            _client = new YoutubeClient();
         }
 
-        public override async Task DownloadVideo(string url, string output)
+        public override async Task Start()
         {
-            var client = new YoutubeClient();
-            var video = await client.Videos.GetAsync(url);
+            string path;
+            _user.ReadUrlYoutubeVideo();
+            _user.ReadNameFile();
+            
 
-            var streamManifest = client.Videos.Streams.GetManifestAsync(url).Result;
+            var streamManifest = _client.Videos.Streams.GetManifestAsync(_user.YoutubeUrl).Result;
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-            var stream = client.Videos.Streams.GetAsync(streamInfo).Result;
-            var direct = Path.Combine(output, $"{video.Id.Value}.{streamInfo.Container}");
-            Console.WriteLine("Скачивание началось");
-            await client.Videos.Streams.DownloadAsync(streamInfo, direct);
-            await Console.Out.WriteLineAsync("скачивание закончено"); ;
+            var id = _client.Videos.GetAsync(_user.YoutubeUrl).Result.Id.Value;
+
+            if (string.IsNullOrEmpty(_user.OutputFileName))
+                path = Path.Combine(_user.PathOutput, $"{id}.{streamInfo.Container}");
+            else
+                path = Path.Combine(_user.PathOutput, $"{_user.OutputFileName}.{streamInfo.Container}");
+
+            Console.WriteLine("\nЗагрузка началась");
+            await _client.Videos.Streams.DownloadAsync(streamInfo, path);
+            await Console.Out.WriteLineAsync("Загрузка завершена"); ;
 
         }
     }
